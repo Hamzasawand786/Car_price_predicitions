@@ -1,14 +1,12 @@
-# app.py
-
 import streamlit as st
 import pandas as pd
 import joblib
+import os
 from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.impute import SimpleImputer
-import os
 
 # ------------------------
 # Streamlit page config
@@ -23,30 +21,30 @@ st.set_page_config(
 # Custom CSS for sporty look
 # ------------------------
 st.markdown("""
-    <style>
-    .main {
-        background-color: #1e1e1e;
-        color: #f0f0f0;
-    }
-    h1 {
-        color: #ff4b4b;
-        text-align: center;
-    }
-    .stButton>button {
-        background-color: #ff4b4b;
-        color: white;
-        font-size: 16px;
-        border-radius: 10px;
-        padding: 10px;
-        margin-top: 10px;
-    }
-    .stTextInput>div>input, .stNumberInput>div>input {
-        border-radius: 8px;
-        padding: 8px;
-        background-color: #2b2b2b;
-        color: white;
-    }
-    </style>
+<style>
+.main {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+}
+h1 {
+    color: #ff4b4b;
+    text-align: center;
+}
+.stButton>button {
+    background-color: #ff4b4b;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+}
+.stTextInput>div>input, .stNumberInput>div>input {
+    border-radius: 8px;
+    padding: 8px;
+    background-color: #2b2b2b;
+    color: white;
+}
+</style>
 """, unsafe_allow_html=True)
 
 st.title("🏎️ Sports Car Price Predictor")
@@ -54,7 +52,7 @@ st.title("🏎️ Sports Car Price Predictor")
 # ------------------------
 # Load trained model
 # ------------------------
-model_path = "car_price_regression_model.pkl"  # must be in the same folder as app.py
+model_path = "car_price_regression_model.pkl"  # Must be in the same repo
 
 if os.path.exists(model_path):
     try:
@@ -63,7 +61,7 @@ if os.path.exists(model_path):
         st.error(f"❌ Failed to load model: {e}")
         st.stop()
 else:
-    st.error(f"❌ Model file not found at '{model_path}'. Please upload 'car_price_regression_model.pkl'.")
+    st.error(f"❌ Model file not found at '{model_path}'. Upload 'car_price_regression_model.pkl' to the repo.")
     st.stop()
 
 # ------------------------
